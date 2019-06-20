@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +12,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get('races', 'RaceController@index');
+// Route::get('races', 'RaceController@index');
+// Route::post('race', 'RaceController@store');
 
-Route::post('race', 'RaceController@store');
+Route::resource('races', 'RaceController',['except'=>['create','edit']]);
+Route::resource('species', 'SpecieController',['except'=>['create','edit']]);
