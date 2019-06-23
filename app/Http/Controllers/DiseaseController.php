@@ -15,7 +15,7 @@ class DiseaseController extends Controller
      */
     public function index()
     {
-        $diseases = Disease::simplePaginate(5);
+        $diseases = Disease::paginate(5);
         return response()->json(['info'=>$diseases],200);
     }
 
