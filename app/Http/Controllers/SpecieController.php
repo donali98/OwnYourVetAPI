@@ -15,7 +15,7 @@ class SpecieController extends Controller
      */
     public function index()
     {
-        $species = Specie::all();
+        $species = Specie::simplePaginate(5);
         return response()->json(['data'=>$species],200);
         
     }
