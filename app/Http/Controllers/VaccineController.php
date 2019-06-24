@@ -35,6 +35,7 @@ class VaccineController extends Controller
             'specie_id'=>'required|exists:species,id',
             'estimated_date'=>'required',
             'weeks'=>'required|min:0',
+            'image'=>'required',
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){

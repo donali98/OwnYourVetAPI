@@ -11,7 +11,8 @@ class Vaccine extends Model
         'information',
         'specie_id',
         'estimated_date',
-        'weeks'
+        'weeks',
+        'image'
     ];
 
     public function specie()
