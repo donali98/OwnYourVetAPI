@@ -18,6 +18,8 @@ class CreateVaccinesTable extends Migration
             $table->string('name');
             $table->string('information',1000);
             $table->bigInteger('specie_id')->unsigned();
+            $table->string('estimated_date');
+            $table->integer('weeks')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 

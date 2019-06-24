@@ -9,7 +9,9 @@ class Vaccine extends Model
     protected $fillable = [
         'name',
         'information',
-        'specie_id'
+        'specie_id',
+        'estimated_date',
+        'weeks'
     ];
 
     public function specie()

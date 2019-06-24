@@ -16,7 +16,7 @@ class VaccineController extends Controller
     public function index()
     {
         // $vaccines = Vaccine::with('specie')->get();
-        $vaccines = Vaccine::paginate(5);
+        $vaccines = Vaccine::all();
         return response()->json(['data'=>$vaccines],200);
     }
 
@@ -33,7 +33,8 @@ class VaccineController extends Controller
             'name'=>'required|min:2',
             'information'=>'required|min:2',
             'specie_id'=>'required|exists:species,id',
-
+            'estimated_date'=>'required',
+            'weeks'=>'required|min:0',
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
