@@ -15,7 +15,8 @@ class VaccineController extends Controller
      */
     public function index()
     {
-        $vaccines = Vaccine::all();
+        // $vaccines = Vaccine::with('specie')->get();
+        $vaccines = Vaccine::paginate(5);
         return response()->json(['data'=>$vaccines],200);
     }
 
