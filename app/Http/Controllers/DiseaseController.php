@@ -18,6 +18,11 @@ class DiseaseController extends Controller
         $diseases = Disease::paginate(5);
         return response()->json(['info'=>$diseases],200);
     }
+    public function indexNoPaging()
+    {
+        $diseases = Disease::all();
+        return response()->json(['info'=>$diseases],200);
+    }
 
     /**
      * Store a newly created resource in storage.
