@@ -10,6 +10,6 @@ class Race extends Model
 
     public function species()
     {
-        return $this->belongsToMany(Specie::class);
+        return $this->belongsTo(Specie::class);
     }
 }

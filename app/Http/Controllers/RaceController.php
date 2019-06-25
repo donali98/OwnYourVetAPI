@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Race;
+use Illuminate\Support\Facades\Validator;
 
 class RaceController extends Controller
 {
@@ -14,6 +15,7 @@ class RaceController extends Controller
      */
     public function index()
     {
+        
         $races = Race::all();
         return response()->json(['data'=>$races],200);
     
@@ -27,6 +29,13 @@ class RaceController extends Controller
      */
     public function store(Request $request)
     {
+        $validationRules = [
+            'name'=>'required|min:2',
+        ];
+        $validator = Validator::make($request->all(),$validationRules);
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->errors()],400);
+        }
         $params = $request->all();
         $race = Race::create($params);
         return response()->json($race,200);
@@ -40,7 +49,8 @@ class RaceController extends Controller
      */
     public function show($id)
     {
-        //
+        $race = Race::findOrFail($id);
+        return response()->json(['data'=>$race],200);
     }
 
 
@@ -53,7 +63,18 @@ class RaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $race = Specie::findOrFail($id);
+
+        $validationRules = [
+            'name'=>'required|min:2',
+        ];
+        $validator = Validator::make($request->all(),$validationRules);
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->errors()],400);
+        }
+        $race->name = $request->name;
+        $race->save();
+        return response()->json(['data'=>$race],200);
     }
 
     /**
@@ -64,6 +85,9 @@ class RaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $race = Specie::findOrFail($id);
+        $race->delete();
+        
+        return response()->json(['data'=>$race],200);
     }
 }
