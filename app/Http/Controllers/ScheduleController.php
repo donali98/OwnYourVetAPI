@@ -31,7 +31,7 @@ class ScheduleController extends Controller
     {
         $validationRules = [
             'day'=>'required|date|unique:schedules,day',
-            'user_id'=>'required|exists:users,id'
+            'id_user'=>'required|exists:users,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
@@ -65,14 +65,14 @@ class ScheduleController extends Controller
         $schedule = Schedule::findOrFail($id);
         $validationRules = [
             'day'=>'required|date|unique:schedules,day',
-            'user_id'=>'required|exists:users,id'
+            'id_user'=>'required|exists:users,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()],400);
         }
         $schedule->day = $request->day;
-        $schedule->user_id = $request->user_id;
+        $schedule->id_user = $request->id_user;
         $schedule->save();
         return response()->json(['data'=>$schedule],200);
 
