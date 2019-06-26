@@ -37,8 +37,8 @@ class ScheduleController extends Controller
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()],400);
         }
-        $disease = Disease::create($request->all());
-        return response()->json(['data'=>$disease],200);
+        $schedule = Schedule::create($request->all());
+        return response()->json(['data'=>$schedule],200);
     }
 
     /**
