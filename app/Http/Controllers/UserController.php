@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function findAdmins()
     {
-        $users = User::where('user_type',User::USUARIO_ADMIN);
+        $users = User::where('user_type',User::USUARIO_ADMIN)->get();
         return response()->json(['data'=>$users],200);
     }
 
