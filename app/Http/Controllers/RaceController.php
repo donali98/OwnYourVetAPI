@@ -31,6 +31,7 @@ class RaceController extends Controller
     {
         $validationRules = [
             'name'=>'required|min:2',
+            'specie_id'=>'required|exists:species,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
@@ -63,16 +64,19 @@ class RaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $race = Specie::findOrFail($id);
+        $race = Race::findOrFail($id);
 
         $validationRules = [
             'name'=>'required|min:2',
+            'specie_id'=>'required|exists:species,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()],400);
         }
         $race->name = $request->name;
+        $race->specie_id = $request->specie_id;
+
         $race->save();
         return response()->json(['data'=>$race],200);
     }
@@ -85,7 +89,7 @@ class RaceController extends Controller
      */
     public function destroy($id)
     {
-        $race = Specie::findOrFail($id);
+        $race = Race::findOrFail($id);
         $race->delete();
         
         return response()->json(['data'=>$race],200);

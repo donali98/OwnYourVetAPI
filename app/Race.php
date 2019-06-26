@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'specie_id'
+    ];
 
     public function species()
     {
