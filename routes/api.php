@@ -21,6 +21,8 @@ Route::resource('species', 'SpecieController',['except'=>['create','edit']]);
 Route::resource('vaccines', 'VaccineController',['except'=>['create','edit']]);
 Route::resource('diseases', 'DiseaseController',['except'=>['create','edit']]);
 Route::resource('users', 'UserController',['except'=>['create','edit']]);
+Route::resource('schedules', 'ScheduleController',['except'=>['create','edit']]);
+
 
 Route::get('diseasesnp', 'DiseaseController@indexNoPaging');
 Route::get('usersadmins', 'UserController@findAdmins');
