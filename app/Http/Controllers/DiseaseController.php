@@ -35,8 +35,7 @@ class DiseaseController extends Controller
         $validationRules = [
             'name'=>'required|min:2',
             'information'=>'required|min:2',
-            'specie_id'=>'required|exists:species,id',
-
+            'specie_id'=>'required|exists:species,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
