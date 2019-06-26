@@ -24,3 +24,4 @@ Route::resource('users', 'UserController',['except'=>['create','edit']]);
 
 Route::get('diseasesnp', 'DiseaseController@indexNoPaging');
 Route::get('usersadmins', 'UserController@findAdmins');
+Route::get('usersnormal', 'UserController@findNormal');

@@ -61,6 +61,12 @@ class UserController extends Controller
         return response()->json(['data'=>$users],200);
     }
 
+    public function findNormal()
+    {
+        $users = User::where('user_type',User::USUARIO_NORMAL)->get();
+        return response()->json(['data'=>$users],200);
+    }
+
 
 
     /**
