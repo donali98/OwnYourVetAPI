@@ -55,6 +55,13 @@ class UserController extends Controller
         return response()->json(['data'=>$user],200);
     }
 
+    public function findByUserType($type)
+    {
+        $users = User::where('user_type',$type);
+        return response()->json(['data'=>$users],200);
+    }
+
+
 
     /**
      * Update the specified resource in storage.
