@@ -15,7 +15,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::with('race')->get();
+        $patients = Patient::with('race.specie')->get();
         return response()->json(['data'=>$patients],200);
     }
 
@@ -47,7 +47,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $patient = Patient::with('race')->findOrFail($id);
+        $patient = Patient::with('race.specie')->findOrFail($id);
         return response()->json(['data'=>$patient],200);
 
     }
@@ -61,7 +61,7 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $patient =  Patient::with('race')->findOrFail($id);
+        $patient =  Patient::with('race.specie')->findOrFail($id);
         $validationRules = [
             'name'=>'required|min:2',
             'race_id'=>'required|exists:races,id'
