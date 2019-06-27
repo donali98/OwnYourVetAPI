@@ -15,7 +15,7 @@ class ClientPatientsController extends Controller
      */
     public function index()
     {
-        $clientClientPatients = ClientPatient::with(['race','patient'])->get();
+        $clientClientPatients = ClientPatient::with(['client','patient'])->get();
         return response()->json(['data'=>$clientClientPatients],200);
     }
 
