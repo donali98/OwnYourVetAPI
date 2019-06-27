@@ -31,7 +31,7 @@ class ClientPatientsController extends Controller
     {
         $validationRules = [
             'client_id'=>'required|exists:users,id',
-            'race_id'=>'required|exists:races,id'
+            'patient_id'=>'required|exists:patients,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
@@ -68,7 +68,7 @@ class ClientPatientsController extends Controller
         $clientClientPatient =  ClientPatient::with('race')->findOrFail($id);
         $validationRules = [
             'client_id'=>'required|exists:users,id',
-            'race_id'=>'required|exists:races,id'
+            'patient_id'=>'required|exists:patients,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);
         if($validator->fails()){
