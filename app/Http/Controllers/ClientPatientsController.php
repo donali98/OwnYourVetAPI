@@ -19,6 +19,17 @@ class ClientPatientsController extends Controller
         return response()->json(['data'=>$clientClientPatients],200);
     }
 
+    public function findPatientsByClient($id)
+    {
+        $clientClientPatients = ClientPatient::with(['patient'])
+        ->where('client_id','=',$id)
+        ->get();
+        
+        return response()->json(['data'=>$clientClientPatients],200);
+
+
+    }
+
 
 
     /**

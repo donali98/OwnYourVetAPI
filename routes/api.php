@@ -25,7 +25,7 @@ Route::resource('schedules', 'ScheduleController',['except'=>['create','edit']])
 Route::resource('patients', 'PatientController',['except'=>['create','edit']]);
 Route::resource('clientpatients', 'ClientPatientsController',['except'=>['create','edit']]);
 
-
+Route::get('patientsof/{id}', 'ClientPatientsController@findPatientsByClient');
 Route::get('diseasesnp', 'DiseaseController@indexNoPaging');
 Route::get('usersadmins', 'UserController@findAdmins');
 Route::get('usersnormal', 'UserController@findNormal');
