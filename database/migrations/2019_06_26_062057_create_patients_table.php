@@ -15,7 +15,12 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->unique();
+            $table->bigInteger('race_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('race_id')->references('id')->on('races');
+
         });
     }
 
