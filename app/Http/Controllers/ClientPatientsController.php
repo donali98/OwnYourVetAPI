@@ -49,7 +49,7 @@ class ClientPatientsController extends Controller
      */
     public function show($id)
     {
-        $clientClientPatient = ClientPatient::with('race')->findOrFail($id);
+        $clientClientPatient = ClientPatient::with(['client','patient'])->get();
         return response()->json(['data'=>$clientClientPatient],200);
 
     }
@@ -65,7 +65,7 @@ class ClientPatientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clientClientPatient =  ClientPatient::with('race')->findOrFail($id);
+        $clientClientPatient = ClientPatient::with(['client','patient'])->get();
         $validationRules = [
             'client_id'=>'required|exists:users,id',
             'patient_id'=>'required|exists:patients,id'
@@ -90,7 +90,7 @@ class ClientPatientsController extends Controller
      */
     public function destroy($id)
     {
-        $clientClientPatient =  ClientPatient::with('race')->findOrFail($id);
+        $clientClientPatient = ClientPatient::with(['client','patient'])->get();
         $clientClientPatient->delete();        
         return response()->json(['data'=>$clientClientPatient],200);
     }
