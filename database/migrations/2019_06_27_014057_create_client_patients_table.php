@@ -15,7 +15,7 @@ class CreateClientPatientsTable extends Migration
     {
         Schema::create('client_patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('client_id')->unsigned();
+            $table->string('client_id');
             $table->bigInteger('patient_id')->unsigned();
 
             $table->foreign('client_id')->references('id')->on('users');
