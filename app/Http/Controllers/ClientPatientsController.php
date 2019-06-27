@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ClientPatient;
+use Illuminate\Support\Facades\Validator;
 
 class ClientPatientsController extends Controller
 {
