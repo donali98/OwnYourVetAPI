@@ -20,6 +20,12 @@ class RaceController extends Controller
         return response()->json(['data'=>$races],200);
     
     }
+    public function getRacesFromSpecie($id)
+    {
+        $race  = Race::with('specie')->where('specie_id','=',$id)->get();
+        return response()->json(['data'=>$race],200);
+
+    }
 
     /**
      * Store a newly created resource in storage.
