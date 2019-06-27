@@ -21,7 +21,7 @@ class ClientPatientsController extends Controller
 
     public function findPatientsByClient($id)
     {
-        $clientClientPatients = ClientPatient::with(['patient'])
+        $clientClientPatients = ClientPatient::with(['patient.race.specie'])
         ->where('client_id','=',$id)
         ->get();
         
@@ -60,7 +60,7 @@ class ClientPatientsController extends Controller
      */
     public function show($id)
     {
-        $clientClientPatient = ClientPatient::with(['client','patient'])->findOrFail($id);
+        $clientClientPatient = ClientPatient::with(['client','patient.race.specie'])->findOrFail($id);
         return response()->json(['data'=>$clientClientPatient],200);
 
     }
@@ -76,7 +76,7 @@ class ClientPatientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clientClientPatient = ClientPatient::with(['client','patient'])->findOrFail($id);
+        $clientClientPatient = ClientPatient::with(['client','patient.race.specie'])->findOrFail($id);
         $validationRules = [
             'client_id'=>'required|exists:users,id',
             'patient_id'=>'required|exists:patients,id'
