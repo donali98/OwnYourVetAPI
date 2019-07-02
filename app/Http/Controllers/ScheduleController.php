@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Schedule;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
@@ -37,8 +38,10 @@ class ScheduleController extends Controller
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()],400);
         }
+        $user = User::findOrFail($request->id_user);
+        if(!$user->isAdmin()) return response()->json(['data'=>"El usuario que se desea ingresar no es medico"],400);
         $schedule = Schedule::create($request->all());
-        return response()->json(['data'=>$schedule],200);
+        return response()->json(['data'=>$schedule],200);           
     }
 
     /**
@@ -71,6 +74,8 @@ class ScheduleController extends Controller
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()],400);
         }
+        $user = User::findOrFail($request->id_user);
+        if(!$user->isAdmin()) return response()->json(['data'=>"El usuario que se desea ingresar no es medico"],400);
         $schedule->day = $request->day;
         $schedule->id_user = $request->id_user;
         $schedule->save();

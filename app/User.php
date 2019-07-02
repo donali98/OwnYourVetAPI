@@ -17,4 +17,8 @@ class User extends Model
         'names',
         'direction'
     ];
+    public function isAdmin()
+    {
+        return $this->user_type == User::USUARIO_ADMIN;
+    }
 }
