@@ -66,7 +66,17 @@ class UserController extends Controller
         $users = User::where('user_type',User::USUARIO_NORMAL)->get();
         return response()->json(['data'=>$users],200);
     }
+    
+    public function getAdminsByEmail(Request $request){
+        $validationRules = ['email'=>'required'];
+        $validator = Validator::make($request->all(),$validationRules);
+        if($validator->fails())  return response()->json(['error'=>$validator->errors()],400);
+        $users = User::where('email','like','%'.$request->email.'%')
+        ->where('user_type',User::USUARIO_ADMIN)
+        ->get();
+        return response()->json(['data'=>$users],200);
 
+    }
 
 
     /**

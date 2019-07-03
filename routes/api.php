@@ -28,5 +28,7 @@ Route::resource('clientpatients', 'ClientPatientsController',['except'=>['create
 Route::get('patientsof/{id}', 'ClientPatientsController@findPatientsByClient');
 Route::get('diseasesnp', 'DiseaseController@indexNoPaging');
 Route::get('usersadmins', 'UserController@findAdmins');
+Route::post('adminsbyemail', 'UserController@getAdminsByEmail');
+
 Route::get('usersnormal', 'UserController@findNormal');
 Route::get('racesofspecie/{id}', 'RaceController@getRacesFromSpecie');
