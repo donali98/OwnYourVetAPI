@@ -10,4 +10,8 @@ class Schedule extends Model
         'day',
         'id_user'
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User','id_user','id');
+    }
 }

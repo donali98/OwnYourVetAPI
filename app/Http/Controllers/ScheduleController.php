@@ -16,7 +16,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedule = Schedule::all();
+        $schedule = Schedule::with('user')->get();
         return response()->json(['data'=>$schedule],200);
     }
 
@@ -31,7 +31,7 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $validationRules = [
-            'day'=>'required|date|unique:schedules,day',
+            'day'=>'required|date_format:Y-m-d|unique:schedules,day',
             'id_user'=>'required|exists:users,id'
         ];
         $validator = Validator::make($request->all(),$validationRules);

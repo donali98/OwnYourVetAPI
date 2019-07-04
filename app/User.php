@@ -21,4 +21,8 @@ class User extends Model
     {
         return $this->user_type == User::USUARIO_ADMIN;
     }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }
