@@ -20,6 +20,15 @@ class ScheduleController extends Controller
         return response()->json(['data'=>$schedule],200);
     }
 
+    public function getSchedulesOfUser($id)
+    {
+        $schedule = Schedule::with('user')
+        ->where('id_user','=',$id)
+        ->get();
+        return response()->json(['data'=>$schedule],200);
+
+        
+    }
     
 
     /**
